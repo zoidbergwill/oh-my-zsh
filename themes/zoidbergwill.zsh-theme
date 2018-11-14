@@ -106,10 +106,25 @@ PR_RST="%f"
 # }
 # add-zsh-hook precmd steeef_precmd
 
-PROMPT='%{$reset_color%}%{$turquoise%}%C%{$reset_color%} \
-$vcs_info_msg_0_\
-$(virtualenv_info)\
-$(prompt_char)%{$reset_color%} '
+# From oh-my-zsh's lib/git.zsh
+# Outputs the name of the current branch
+# Usage example: git pull origin $(git_current_branch)
+# Using '--quiet' with 'symbolic-ref' will not cause a fatal error (128) if
+# it's not a symbolic ref, but in a Git repo.
+function prompt_git_branch() {
+  local ref
+  ref=$(command git symbolic-ref --quiet HEAD 2> /dev/null)
+  local ret=$?
+  if [[ $ret != 0 ]]; then
+    [[ $ret == 128 ]] && return  # no git repo.
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
+  fi
+  echo "(${ref#refs/heads/}) "
+}
+
+PROMPT='%{$reset_color%}%C%{$reset_color%} \
+$(prompt_git_branch)\
+%{$turquoise%}$(prompt_char)%{$reset_color%} '
 PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
 RPS1='%{$limegreen%}%*%{$reset_color%}'
 
