@@ -122,11 +122,17 @@ function prompt_git_branch() {
   echo "(${ref#refs/heads/}) "
 }
 
-PROMPT='%{$reset_color%}%C%{$reset_color%} \
-$(prompt_git_branch)\
+# turquoise="%F{81}"
+# orange="%F{166}"
+# purple="%F{135}"
+# hotpink="%F{161}"
+# limegreen="%F{118}"
+PROMPT='%{$hotpink%}%C%{$reset_color%} \
+%{$orange%}$(prompt_git_branch)%{$reset_color%}\
+$(virtualenv_info)\
 %{$turquoise%}$(prompt_char)%{$reset_color%} '
-PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
-RPS1='%{$limegreen%}%*%{$reset_color%}'
+# PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
+RPS1='%{$purple%}%*%{$reset_color%}'
 
 ZSH_THEME_VIRTUAL_ENV_PROMPT_PREFIX="%{$reset_color%}%{$fg[blue]%}"
 ZSH_THEME_VIRTUAL_ENV_PROMPT_SUFFIX="!%{$reset_color%} "
