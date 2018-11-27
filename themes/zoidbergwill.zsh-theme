@@ -127,10 +127,10 @@ function prompt_git_branch() {
 # purple="%F{135}"
 # hotpink="%F{161}"
 # limegreen="%F{118}"
-PROMPT='%{$hotpink%}%C%{$reset_color%} \
-%{$orange%}$(prompt_git_branch)%{$reset_color%}\
+PROMPT='%{$limegreen%}%C%{$reset_color%} \
+%{$turquoise%}$(prompt_git_branch)%{$reset_color%}\
 $(virtualenv_info)\
-%{$turquoise%}$(prompt_char)%{$reset_color%} '
+%{$purple%}$(prompt_char)%{$reset_color%} '
 # PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
 RPS1='%{$purple%}%*%{$reset_color%}'
 
